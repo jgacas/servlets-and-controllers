@@ -4,6 +4,7 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
          
+    <!-- Simple Servlet -->
     <servlet>
 		<servlet-name>simple-servlet</servlet-name>
 		<servlet-class>com.github.jgacas.servlet.SimpleHttpServlet</servlet-class>
@@ -11,6 +12,27 @@
 
 	<servlet-mapping>
 		<servlet-name>simple-servlet</servlet-name>
-		<url-pattern>/request</url-pattern>
+		<url-pattern>/servlet/request</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Spring dispatcher -->
+	<listener>
+		<listener-class>
+		  org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+    <servlet>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring-mvc-config.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring-dispatcher</servlet-name>
+        <url-pattern>/controller/*</url-pattern>
+    </servlet-mapping>
 </web-app>

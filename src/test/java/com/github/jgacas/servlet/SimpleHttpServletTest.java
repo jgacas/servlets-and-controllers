@@ -18,7 +18,7 @@ public class SimpleHttpServletTest {
 	public void setUp() throws Exception {
 		tester = new ServletTester();
 		tester.setContextPath("/");
-		tester.addServlet(SimpleHttpServlet.class, "/request");
+		tester.addServlet(SimpleHttpServlet.class, "/servlet/request");
 		tester.start();
 	}
 
@@ -31,7 +31,7 @@ public class SimpleHttpServletTest {
 	public void shouldReturnCorrectHeading() throws Exception {
 		HttpTester.Request request = new HttpTester.Request();
 		request.setMethod("GET");
-		request.setURI("/request");
+		request.setURI("/servlet/request");
 		
 		HttpTester.Response response = HttpTester.parseResponse(tester.getResponses(request.generate()));
 		assertEquals(200, response.getStatus());
